@@ -2,16 +2,13 @@ package com.company.devices;
 
 import com.company.CarBrands;
 
-public class Car {
+public class Car extends Device{
     private final CarBrands brand;
-    private final String model;
-    private int buildYear;
     private double carValue;
 
     public Car(CarBrands brand, String model, int buildYear) {
+        super(brand.name(), model, buildYear);
         this.brand = brand;
-        this.model = model;
-        this.buildYear = buildYear;
     }
 
     @Override
@@ -21,43 +18,22 @@ public class Car {
 
         Car car = (Car) o;
 
-        if (buildYear != car.buildYear) return false;
+        if (getYearOfProduction() != car.getYearOfProduction()) return false;
         if (brand != car.brand) return false;
-        return model.equals(car.model);
+        return getModel().equals(car.getModel());
     }
 
     @Override
     public int hashCode() {
         int result = brand.hashCode();
-        result = 31 * result + model.hashCode();
-        result = 31 * result + buildYear;
+        result = 31 * result + getModel().hashCode();
+        result = 31 * result + getYearOfProduction();
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "brand=" + brand +
-                ", model='" + model + '\'' +
-                ", buildYear=" + buildYear +
-                ", carValue=" + carValue +
-                '}';
-    }
 
     public CarBrands getBrand() {
         return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getBuildYear() {
-        return buildYear;
-    }
-
-    public void setBuildYear(int buildYear) {
-        this.buildYear = buildYear;
     }
 
     public double getCarValue() {
@@ -66,5 +42,10 @@ public class Car {
 
     public void setCarValue(double carValue) {
         this.carValue = carValue;
+    }
+
+    @Override
+    public void turnOn() {
+        System.out.println("Samochód uruchomiony");
     }
 }

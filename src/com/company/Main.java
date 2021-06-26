@@ -1,8 +1,12 @@
 package com.company;
 
+import com.company.creatures.Animal;
+import com.company.creatures.Human;
 import com.company.devices.Car;
+import com.company.devices.Device;
 import com.company.devices.Phone;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -20,9 +24,9 @@ public class Main {
         Animal bulldog = new Animal("Reksio", false, 16.7, Species.DOGS);
         Animal fish = new Animal("Nemo", false, Species.FISHES);
 
-        Phone cegla = new Phone("Nokia", "3310", 0.5f, false);
-        Phone smart = new Phone("Xiaomi", "Redmi 8T", 6.8f, true);
-        Phone cegla2 = new Phone("Nokia", "6380i", 1.5f, false);
+        Phone cegla = new Phone("Nokia", "3310", 2010, 0.5f, false);
+        Phone smart = new Phone("Xiaomi", "Redmi 8T", 2020, 6.8f, true);
+        Phone cegla2 = new Phone("Nokia", "6380i", 2000, 1.5f, false);
 
         Animal.weightCompare(bociek, fox);
 
@@ -59,5 +63,20 @@ public class Main {
         andrzej.getSalary();
         andrzej.setCar(car3);
         andrzej.getCar();
+
+        andrzej.setDevice(cegla);
+        Device urzadzenie = andrzej.getDevice();
+        System.out.println(urzadzenie.toString());
+        baska.addCash(BigDecimal.valueOf(500));
+        urzadzenie.sell(andrzej, baska, 500);
+        System.out.println(baska.getDevice());
+        urzadzenie.turnOn();
+        System.out.println(baska.getCash());
+        System.out.println(andrzej.getCash());
+
+        // EXCEPTIONS
+        andrzej.sell(rysiek, baska, 2000);
+        urzadzenie.sell(andrzej, baska, 500);
+        urzadzenie.sell(rysiek, baska, 500);
     }
 }
